@@ -32,7 +32,7 @@ float deltaTime = 0.0f; // time between current frame and last frame
 float lastFrame = 0.0f;
 
 // lighting
-glm::vec3 lightPos(1.2f, 1.0f, -5.0f);
+glm::vec3 lightPos(1.2f, 1.0f, 7.0f);
 
 int main()
 {
@@ -77,63 +77,64 @@ int main()
   // ------------------------------------
   Shader ourShader("pyramid/shaders/shader.vert", "pyramid/shaders/shader.frag");
   Shader lightCubeShader("pyramid/light/light.vert", "pyramid/light/light.frag");
+  Shader floorShader("pyramid/floor/floor.vert", "pyramid/floor/floor.frag");
 
   // set up vertex data (and buffer(s)) and configure vertex attributes
   // ------------------------------------------------------------------
   float vertices[] = {
-      -0.5f, -0.5f, -0.5f, 0.0f, 0.0f, 0.0f,  0.0f, -1.0f,
-      0.5f, -0.5f, -0.5f, 1.0f, 0.0f, 0.0f,  0.0f, -1.0f,
-      0.5f, 0.5f, -0.5f, 1.0f, 1.0f, 0.0f,  0.0f, -1.0f,
-      0.5f, 0.5f, -0.5f, 1.0f, 1.0f, 0.0f,  0.0f, -1.0f,
-      -0.5f, 0.5f, -0.5f, 0.0f, 1.0f, 0.0f,  0.0f, -1.0f,
-      -0.5f, -0.5f, -0.5f, 0.0f, 0.0f, 0.0f,  0.0f, -1.0f,
+      -0.5f, -0.5f, -0.5f, 0.0f, 0.0f, 0.0f, 0.0f, -1.0f,
+      0.5f, -0.5f, -0.5f, 1.0f, 0.0f, 0.0f, 0.0f, -1.0f,
+      0.5f, 0.5f, -0.5f, 1.0f, 1.0f, 0.0f, 0.0f, -1.0f,
+      0.5f, 0.5f, -0.5f, 1.0f, 1.0f, 0.0f, 0.0f, -1.0f,
+      -0.5f, 0.5f, -0.5f, 0.0f, 1.0f, 0.0f, 0.0f, -1.0f,
+      -0.5f, -0.5f, -0.5f, 0.0f, 0.0f, 0.0f, 0.0f, -1.0f,
 
-      -0.5f, -0.5f, 0.5f, 0.0f, 0.0f, 0.0f,  0.0f, 1.0f,
-      0.5f, -0.5f, 0.5f, 1.0f, 0.0f, 0.0f,  0.0f, 1.0f,
-      0.5f, 0.5f, 0.5f, 1.0f, 1.0f, 0.0f,  0.0f, 1.0f,
-      0.5f, 0.5f, 0.5f, 1.0f, 1.0f, 0.0f,  0.0f, 1.0f,
-      -0.5f, 0.5f, 0.5f, 0.0f, 1.0f, 0.0f,  0.0f, 1.0f,
-      -0.5f, -0.5f, 0.5f, 0.0f, 0.0f, 0.0f,  0.0f, 1.0f,
+      -0.5f, -0.5f, 0.5f, 0.0f, 0.0f, 0.0f, 0.0f, 1.0f,
+      0.5f, -0.5f, 0.5f, 1.0f, 0.0f, 0.0f, 0.0f, 1.0f,
+      0.5f, 0.5f, 0.5f, 1.0f, 1.0f, 0.0f, 0.0f, 1.0f,
+      0.5f, 0.5f, 0.5f, 1.0f, 1.0f, 0.0f, 0.0f, 1.0f,
+      -0.5f, 0.5f, 0.5f, 0.0f, 1.0f, 0.0f, 0.0f, 1.0f,
+      -0.5f, -0.5f, 0.5f, 0.0f, 0.0f, 0.0f, 0.0f, 1.0f,
 
-      -0.5f, 0.5f, 0.5f, 1.0f, 0.0f, -1.0f,  0.0f,  0.0f,
-      -0.5f, 0.5f, -0.5f, 1.0f, 1.0f, -1.0f,  0.0f,  0.0f,
-      -0.5f, -0.5f, -0.5f, 0.0f, 1.0f, -1.0f,  0.0f,  0.0f,
-      -0.5f, -0.5f, -0.5f, 0.0f, 1.0f, -1.0f,  0.0f,  0.0f,
-      -0.5f, -0.5f, 0.5f, 0.0f, 0.0f, -1.0f,  0.0f,  0.0f,
-      -0.5f, 0.5f, 0.5f, 1.0f, 0.0f, -1.0f,  0.0f,  0.0f,
+      -0.5f, 0.5f, 0.5f, 1.0f, 0.0f, -1.0f, 0.0f, 0.0f,
+      -0.5f, 0.5f, -0.5f, 1.0f, 1.0f, -1.0f, 0.0f, 0.0f,
+      -0.5f, -0.5f, -0.5f, 0.0f, 1.0f, -1.0f, 0.0f, 0.0f,
+      -0.5f, -0.5f, -0.5f, 0.0f, 1.0f, -1.0f, 0.0f, 0.0f,
+      -0.5f, -0.5f, 0.5f, 0.0f, 0.0f, -1.0f, 0.0f, 0.0f,
+      -0.5f, 0.5f, 0.5f, 1.0f, 0.0f, -1.0f, 0.0f, 0.0f,
 
-      0.5f, 0.5f, 0.5f, 1.0f, 0.0f,  1.0f,  0.0f,  0.0f,
-      0.5f, 0.5f, -0.5f, 1.0f, 1.0f,  1.0f,  0.0f,  0.0f,
-      0.5f, -0.5f, -0.5f, 0.0f, 1.0f,  1.0f,  0.0f,  0.0f,
-      0.5f, -0.5f, -0.5f, 0.0f, 1.0f,  1.0f,  0.0f,  0.0f,
-      0.5f, -0.5f, 0.5f, 0.0f, 0.0f,  1.0f,  0.0f,  0.0f,
-      0.5f, 0.5f, 0.5f, 1.0f, 0.0f,  1.0f,  0.0f,  0.0f,
+      0.5f, 0.5f, 0.5f, 1.0f, 0.0f, 1.0f, 0.0f, 0.0f,
+      0.5f, 0.5f, -0.5f, 1.0f, 1.0f, 1.0f, 0.0f, 0.0f,
+      0.5f, -0.5f, -0.5f, 0.0f, 1.0f, 1.0f, 0.0f, 0.0f,
+      0.5f, -0.5f, -0.5f, 0.0f, 1.0f, 1.0f, 0.0f, 0.0f,
+      0.5f, -0.5f, 0.5f, 0.0f, 0.0f, 1.0f, 0.0f, 0.0f,
+      0.5f, 0.5f, 0.5f, 1.0f, 0.0f, 1.0f, 0.0f, 0.0f,
 
-      -0.5f, -0.5f, -0.5f, 0.0f, 1.0f, 0.0f, -1.0f,  0.0f,
-      0.5f, -0.5f, -0.5f, 1.0f, 1.0f, 0.0f, -1.0f,  0.0f,
-      0.5f, -0.5f, 0.5f, 1.0f, 0.0f, 0.0f, -1.0f,  0.0f,
-      0.5f, -0.5f, 0.5f, 1.0f, 0.0f, 0.0f, -1.0f,  0.0f,
-      -0.5f, -0.5f, 0.5f, 0.0f, 0.0f, 0.0f, -1.0f,  0.0f,
-      -0.5f, -0.5f, -0.5f, 0.0f, 1.0f, 0.0f, -1.0f,  0.0f,
+      -0.5f, -0.5f, -0.5f, 0.0f, 1.0f, 0.0f, -1.0f, 0.0f,
+      0.5f, -0.5f, -0.5f, 1.0f, 1.0f, 0.0f, -1.0f, 0.0f,
+      0.5f, -0.5f, 0.5f, 1.0f, 0.0f, 0.0f, -1.0f, 0.0f,
+      0.5f, -0.5f, 0.5f, 1.0f, 0.0f, 0.0f, -1.0f, 0.0f,
+      -0.5f, -0.5f, 0.5f, 0.0f, 0.0f, 0.0f, -1.0f, 0.0f,
+      -0.5f, -0.5f, -0.5f, 0.0f, 1.0f, 0.0f, -1.0f, 0.0f,
 
-      -0.5f, 0.5f, -0.5f, 0.0f, 1.0f, 0.0f,  1.0f,  0.0f,
-      0.5f, 0.5f, -0.5f, 1.0f, 1.0f, 0.0f,  1.0f,  0.0f,
-      0.5f, 0.5f, 0.5f, 1.0f, 0.0f, 0.0f,  1.0f,  0.0f,
-      0.5f, 0.5f, 0.5f, 1.0f, 0.0f, 0.0f,  1.0f,  0.0f,
-      -0.5f, 0.5f, 0.5f, 0.0f, 0.0f, 0.0f,  1.0f,  0.0f,
-      -0.5f, 0.5f, -0.5f, 0.0f, 1.0f, 0.0f,  1.0f,  0.0f};
+      -0.5f, 0.5f, -0.5f, 0.0f, 1.0f, 0.0f, 1.0f, 0.0f,
+      0.5f, 0.5f, -0.5f, 1.0f, 1.0f, 0.0f, 1.0f, 0.0f,
+      0.5f, 0.5f, 0.5f, 1.0f, 0.0f, 0.0f, 1.0f, 0.0f,
+      0.5f, 0.5f, 0.5f, 1.0f, 0.0f, 0.0f, 1.0f, 0.0f,
+      -0.5f, 0.5f, 0.5f, 0.0f, 0.0f, 0.0f, 1.0f, 0.0f,
+      -0.5f, 0.5f, -0.5f, 0.0f, 1.0f, 0.0f, 1.0f, 0.0f};
   // world space positions of our cubes
   glm::vec3 cubePositions[] = {
-      glm::vec3(0.0f, 0.0f, 0.0f),
-      glm::vec3(2.0f, 5.0f, -15.0f),
-      glm::vec3(-1.5f, -2.2f, -2.5f),
-      glm::vec3(-3.8f, -2.0f, -12.3f),
-      glm::vec3(2.4f, -0.4f, -3.5f),
-      glm::vec3(-1.7f, 3.0f, -7.5f),
-      glm::vec3(1.3f, -2.0f, -2.5f),
-      glm::vec3(1.5f, 2.0f, -2.5f),
-      glm::vec3(1.5f, 0.2f, -1.5f),
-      glm::vec3(-1.3f, 1.0f, -1.5f)};
+      glm::vec3(0.0f, 0.0f, 1.0f),
+      glm::vec3(2.0f, 5.0f, 15.0f),
+      glm::vec3(-1.5f, -2.2f, 2.5f),
+      glm::vec3(-3.8f, -2.0f, 12.3f),
+      glm::vec3(2.4f, -0.4f, 3.5f),
+      glm::vec3(-1.7f, 3.0f, 7.5f),
+      glm::vec3(1.3f, -2.0f, 2.5f),
+      glm::vec3(1.5f, 2.0f, 2.5f),
+      glm::vec3(1.5f, 0.2f, 1.5f),
+      glm::vec3(-1.3f, 1.0f, 1.5f)};
   unsigned int VBO, VAO;
   glGenVertexArrays(1, &VAO);
   glGenBuffers(1, &VBO);
@@ -283,16 +284,34 @@ int main()
   glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void *)0);
   glEnableVertexAttribArray(0);
 
-  // second, configure the light's VAO (VBO stays the same; the vertices are the same for the light object which is also a 3D cube)
-  unsigned int lightCubeVAO;
-  glGenVertexArrays(1, &lightCubeVAO);
-  glBindVertexArray(lightCubeVAO);
-
   // we only need to bind to the VBO (to link it with glVertexAttribPointer), no need to fill it; the VBO's data already contains all we need (it's already bound, but we do it again for educational purposes)
   glBindBuffer(GL_ARRAY_BUFFER, cubeVAO);
 
   glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void *)0);
   glEnableVertexAttribArray(0);
+
+  // floor
+  float floorVertices[] = {
+      -40.0f, -4.0f, -40.0f,
+      40.0f, -4.0f, -40.0f,
+      40.0f, -4.0f, 40.0f,
+
+      40.0f, -4.0f, 40.0f,
+      -40.0f, -4.0f, 40.0f,
+      -40.0f, -4.0f, -40.0f};
+
+  unsigned int floorVBO, floorVAO;
+  glGenVertexArrays(1, &floorVAO);
+  glGenBuffers(1, &floorVBO);
+
+  glBindBuffer(GL_ARRAY_BUFFER, floorVBO);
+  glBufferData(GL_ARRAY_BUFFER, sizeof(floorVertices), floorVertices, GL_STATIC_DRAW);
+
+  glBindVertexArray(floorVAO);
+
+  glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void *)0);
+  glEnableVertexAttribArray(0);
+
   // load and create a texture
   // -------------------------
   unsigned int texture;
@@ -335,7 +354,7 @@ int main()
 
     // render
     // ------
-    glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
+    glClearColor(0.1f, 0.1f, 0.1f, 1.0f);
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
     // bind textures on corresponding texture units
@@ -348,7 +367,7 @@ int main()
     ourShader.setVec3("objectColor", 1.0f, 0.5f, 0.31f);
     ourShader.setVec3("lightColor", 1.0f, 1.0f, 1.0f);
     ourShader.setVec3("lightPos", lightPos);
-    ourShader.setVec3("viewPos", camera.Position); 
+    ourShader.setVec3("viewPos", camera.Position);
 
     // pass projection matrix to shader (note that in this case it could change every frame)
     glm::mat4 projection = glm::perspective(glm::radians(camera.Zoom), (float)SCR_WIDTH / (float)SCR_HEIGHT, 0.1f, 100.0f);
@@ -357,7 +376,6 @@ int main()
     // camera/view transformation
     glm::mat4 view = camera.GetViewMatrix();
     ourShader.setMat4("view", view);
-
 
     // render boxes
     glBindVertexArray(VAO);
@@ -374,6 +392,7 @@ int main()
     }
 
     glBindVertexArray(cubeVAO);
+
     // also draw the lamp object
     lightCubeShader.use();
     lightCubeShader.setMat4("projection", projection);
@@ -383,8 +402,16 @@ int main()
     lightModel = glm::scale(lightModel, glm::vec3(0.5f)); // a smaller cube
     lightCubeShader.setMat4("model", lightModel);
 
-    glBindVertexArray(lightCubeVAO);
     glDrawArrays(GL_TRIANGLES, 0, 36);
+
+    // draw floor
+    glBindVertexArray(floorVAO);
+    floorShader.use();
+    floorShader.setMat4("projection", projection);
+    floorShader.setMat4("view", view);
+    floorShader.setMat4("model", glm::mat4(1.0f));
+
+    glDrawArrays(GL_TRIANGLES, 0, 6);
 
     // glfw: swap buffers and poll IO events (keys pressed/released, mouse moved etc.)
     // -------------------------------------------------------------------------------
@@ -395,7 +422,6 @@ int main()
   // optional: de-allocate all resources once they've outlived their purpose:
   // ------------------------------------------------------------------------
   glDeleteVertexArrays(1, &VAO);
-  glDeleteVertexArrays(1, &lightCubeVAO);
   glDeleteBuffers(1, &VBO);
 
   // glfw: terminate, clearing all previously allocated GLFW resources.
