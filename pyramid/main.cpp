@@ -78,6 +78,7 @@ int main()
   Shader ourShader("pyramid/cube/cube.vert", "pyramid/cube/cube.frag");
   Shader lightCubeShader("pyramid/light/light.vert", "pyramid/light/light.frag");
   Shader floorShader("pyramid/floor/floor.vert", "pyramid/floor/floor.frag");
+  Shader shadowShader("pyramid/shadow/shadow.vert", "pyramid/shadow/shadow.frag");
 
   // set up vertex data (and buffer(s)) and configure vertex attributes
   // ------------------------------------------------------------------
@@ -384,8 +385,9 @@ int main()
       // calculate the model matrix for each object and pass it to shader before drawing
       glm::mat4 model = glm::mat4(1.0f); // make sure to initialize matrix to identity matrix first
       model = glm::translate(model, cubePositions[i]);
-      float angle = 20.0f * i;
-      model = glm::rotate(model, glm::radians(angle), glm::vec3(1.0f, 0.3f, 0.5f));
+      float angle = 20.0f * i + currentFrame * 50.f;
+      float r = rand() / double(RAND_MAX);
+      model = glm::rotate(model, glm::radians(angle), glm::vec3(r));
       ourShader.setMat4("model", model);
 
       glDrawArrays(GL_TRIANGLES, 0, 36);
