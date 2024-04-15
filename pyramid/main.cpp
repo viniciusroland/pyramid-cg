@@ -1,14 +1,14 @@
 #include "../glad/glad.h"
 #include <GLFW/glfw3.h>
 
-#include "shaders/shader.h"
+#include "helpers/shader.h"
 
 #include "../glm/glm.hpp"
 #include "../glm/gtc/matrix_transform.hpp"
 #include "../glm/gtc/type_ptr.hpp"
 
 #include "stb_image.h"
-#include "camera/camera.h"
+#include "helpers/camera.h"
 
 #include <iostream>
 
@@ -49,7 +49,7 @@ int main()
 
   // glfw window creation
   // --------------------
-  GLFWwindow *window = glfwCreateWindow(SCR_WIDTH, SCR_HEIGHT, "LearnOpenGL", NULL, NULL);
+  GLFWwindow *window = glfwCreateWindow(SCR_WIDTH, SCR_HEIGHT, "Pyramid visualizer", NULL, NULL);
   if (window == NULL)
   {
     std::cout << "Failed to create GLFW window" << std::endl;
@@ -75,7 +75,7 @@ int main()
 
   // build and compile our shader zprogram
   // ------------------------------------
-  Shader ourShader("pyramid/shaders/shader.vert", "pyramid/shaders/shader.frag");
+  Shader ourShader("pyramid/cube/cube.vert", "pyramid/cube/cube.frag");
   Shader lightCubeShader("pyramid/light/light.vert", "pyramid/light/light.frag");
   Shader floorShader("pyramid/floor/floor.vert", "pyramid/floor/floor.frag");
 
