@@ -27,6 +27,7 @@ Principais referências:
   - [Tutorial OpenGL em texto](https://learnopengl.com/Getting-started/OpenGL)
   - [Tutorial OpenGL em vídeo](https://www.youtube.com/watch?v=YaiSvKTOeRg&list=PLPaoO-vpZnumdcb4tZc4x5Q-v7CkrQ6M-&index=6)
   - [Config de ambiente](https://crackthagamedev.com/posts/configurando-glfw-opengl-no-visual-studio)
+  - [Iluminação](https://learnopengl.com/Advanced-Lighting/Advanced-Lighting)
 
 Para rodar em Windows: Provavelmente usando Visual Studio
 
