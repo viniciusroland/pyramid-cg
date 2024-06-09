@@ -14,12 +14,12 @@ uniform vec3 viewPos;
 void main()
 {
     float ambientStrength = 0.1;
-    vec3 ambient = ambientStrength * lightColor;
+    vec3 ambient = ambientStrength * lightColor; // calcula luz ambiente
 
     vec3 norm = normalize(Normal);
     vec3 lightDir = normalize(lightPos - FragPos);
     float diff = max(dot(norm, lightDir), 0.0);
-    vec3 diffuse = diff * lightColor * 2.0;
+    vec3 diffuse = diff * lightColor * 2.0; // calcula luz difusa
 
     float specularStrength = 2;
     vec3 viewDir = normalize(viewPos - FragPos);
@@ -27,11 +27,11 @@ void main()
 
     // float spec = pow(max(dot(viewDir, reflectDir), 0.0), 32);
     vec3 halfwayDir = normalize(lightDir + viewDir);  
-    float spec = pow(max(dot(norm, halfwayDir), 0.0), 16.0);
+    float spec = pow(max(dot(norm, halfwayDir), 0.0), 16.0); // calcula luz especular usando blinn-phong para amenizar angulos > 90
     
     vec3 specular = specularStrength * spec * lightColor;  
 
-    vec3 colorResult = (ambient + diffuse + specular) * objectColor;
+    vec3 colorResult = (ambient + diffuse + specular) * objectColor; // calcula cor resultante
 
     FragColor = texture(ourTexture, TexCoord) * vec4(colorResult, 1.0);
 }
