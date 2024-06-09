@@ -1,3 +1,28 @@
+EP de Síntese
+
+Integrantes:
+  - Caio Hayashi NUSP 12542162
+  - Guilherme Teodoro NUSP 11953911
+  - Juan Kineipe NUSP 11894610
+  - Luiz Fernando dos Santos NUSP 11840300
+  - Vinicius Roland Crisci NUSP 10773381
+
+Descrição do que foi feito:
+  - Display de vários cubos
+  - Movimentação de camera com o mouse
+  - Movimentação via WASD com teclado
+  - Zoom com scroll
+  - Rotação das entidades
+  - Iluminação (ambiente, difusa, especular)
+  - Textura
+
+Descrição da estrutura de projeto:
+  - Feito em C++ com GLFW
+  - Arquivo principal: main.cpp
+  - Pasta helper/ guarda funções e classes auxiliares para lidar com shader e camera
+  - Fragment shaders e Vertex shaders estão dentro de suas respectivas entidades (cube/floor/light)
+  - Pastas glad, glm e stb sao arquivos auxiliares para lidar com OpenGL e interfaces gráficas (vide tutorial de OpenGL)
+
 Para rodar em Windows: Provavelmente usando Visual Studio
 
 Para rodar em MacOS/Linux: `g++ stb/stb_image.cpp glad/glad.c pyramid/main.cpp -o pyramid/main.o -lglfw.3 -L/opt/homebrew/lib -I/opt/homebrew/Cellar/glfw/3.3.8/include -Wno-deprecated-declarations -Wno-deprecated -framework OpenGL; ./pyramid/main.o`
