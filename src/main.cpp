@@ -71,9 +71,9 @@ int main()
   glEnable(GL_DEPTH_TEST);
 
   // carregando e construindo shaders
-  Shader ourShader("pyramid/cube/cube.vert", "pyramid/cube/cube.frag");
-  Shader lightCubeShader("pyramid/light/light.vert", "pyramid/light/light.frag");
-  Shader floorShader("pyramid/floor/floor.vert", "pyramid/floor/floor.frag");
+  Shader ourShader("src/cube/cube.vert", "src/cube/cube.frag");
+  Shader lightCubeShader("src/light/light.vert", "src/light/light.frag");
+  Shader floorShader("src/floor/floor.vert", "src/floor/floor.frag");
 
   // construindo vertices do cubo (3 posicoes) + textura (2 posicoes) + normal (3 posicoes)
   float vertices[] = {
@@ -315,7 +315,7 @@ int main()
 
   // carregando imagem e configurando mimap
   int width, height, nrChannels;
-  unsigned char *data = stbi_load("pyramid/assets/wall.jpg", &width, &height, &nrChannels, 0);
+  unsigned char *data = stbi_load("src/assets/wall.jpg", &width, &height, &nrChannels, 0);
   if (data)
   {
     glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, width, height, 0, GL_RGB, GL_UNSIGNED_BYTE, data);
