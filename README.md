@@ -9,3 +9,8 @@ framework OpenGl -> setando framework OpenGL
 Essas são as pastas para MacOS. Se você usa Linux, provavelmente tenha que atualizar o comando trocando as pastas.
 
 [Demo](https://github.com/viniciusroland/pyramid-cg/assets/41706108/48e53088-4800-4760-b138-7fca5c7eb5ac)
+
+Screenshots:
+<img width="1134" alt="Screenshot 1" src="https://github.com/viniciusroland/pyramid-cg/assets/41706108/f1d85b8b-b2b2-4cfc-a4ca-9a3dad5d1c38">
+<img width="1134" alt="Screenshot 2" src="https://github.com/viniciusroland/pyramid-cg/assets/41706108/5569688e-fee8-4562-a6cf-f4d3554c4a19">
+<img width="1134" alt="Screenshot 3" src="https://github.com/viniciusroland/pyramid-cg/assets/41706108/ecd0e9dd-d01b-41df-9d81-623f2871880b">
