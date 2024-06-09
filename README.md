@@ -1,4 +1,4 @@
-EP de Síntese
+EP de Síntese - Computação Gráfica
 
 Integrantes:
   - Caio Hayashi NUSP 12542162
