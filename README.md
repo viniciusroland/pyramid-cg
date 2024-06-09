@@ -18,10 +18,15 @@ Descrição do que foi feito:
 
 Descrição da estrutura de projeto:
   - Feito em C++ com GLFW
-  - Arquivo principal: main.cpp
-  - Pasta helper/ guarda funções e classes auxiliares para lidar com shader e camera
-  - Fragment shaders e Vertex shaders estão dentro de suas respectivas entidades (cube/floor/light)
-  - Pastas glad, glm e stb sao arquivos auxiliares para lidar com OpenGL e interfaces gráficas (vide tutorial de OpenGL)
+  - Arquivo principal: `main.cpp`
+  - Pasta `helper` guarda funções e classes auxiliares para lidar com shader e camera
+  - Fragment shaders e Vertex shaders estão dentro de suas respectivas entidades (`cube`/`floor`/`light`)
+  - Pastas `glad`, `glm` e `stb` sao arquivos auxiliares para lidar com OpenGL e interfaces gráficas (vide tutorial de OpenGL)
+
+Principais referências:
+  - [Tutorial OpenGL em texto](https://learnopengl.com/Getting-started/OpenGL)
+  - [Tutorial OpenGL em vídeo](https://www.youtube.com/watch?v=YaiSvKTOeRg&list=PLPaoO-vpZnumdcb4tZc4x5Q-v7CkrQ6M-&index=6)
+  - [Config de ambiente](https://crackthagamedev.com/posts/configurando-glfw-opengl-no-visual-studio)
 
 Para rodar em Windows: Provavelmente usando Visual Studio
 
