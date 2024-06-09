@@ -327,7 +327,7 @@ int main()
   }
   stbi_image_free(data);
 
-  // loop principal
+  // MAIN LOOP
   while (!glfwWindowShouldClose(window))
   {
     float currentFrame = static_cast<float>(glfwGetTime());
